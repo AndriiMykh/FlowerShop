@@ -21,7 +21,6 @@ import com.example.demo.repository.FlowerRepository;
 
 @RestController
 @RequestMapping("/flowers")
-
 public class FlowerController {
 	@Autowired
 	private FlowerRepository flowerRepo;
@@ -31,10 +30,18 @@ public class FlowerController {
 	}  
 	
 	@GetMapping("/{flowerId}")
-	public Optional<Flower> getFlower(@PathVariable Long flowerId) {
+	public Optional<Flower> getFlowerById(@PathVariable Long flowerId) {
 		Optional<Flower> theFlower = flowerRepo.findById(flowerId);
 		if(theFlower.isEmpty())
 			throw new NotFoundException("Flower id not found - " + flowerId);
+		return theFlower;
+	}
+	
+	@GetMapping("/category/{categoryId}")
+	public List<Flower> getFlowerByCategory(@PathVariable Long categoryId) {
+		List<Flower> theFlower = flowerRepo.findByCategory(categoryId);
+		if(theFlower.isEmpty())
+			throw new NotFoundException("Flower category id not found - " + categoryId);
 		return theFlower;
 	}
 	
@@ -44,11 +51,11 @@ public class FlowerController {
 		flowerRepo.save(flower);
 		return new ResponseEntity<>(HttpStatus.CREATED);	
 	}
+	
 	@PutMapping("/{flowerId}")
 	public Flower updateFlower(@PathVariable Long flowerId,@RequestBody Flower newFlower) {
 		  return flowerRepo.findById(flowerId).map(flower -> {
 			  flower.setName(newFlower.getName());
-			  flower.setNumber(newFlower.getNumber());
 			  flower.setPrice(newFlower.getPrice());
 			  flower.setImageURL(newFlower.getImageURL());
 		        return flowerRepo.save(flower);
@@ -58,6 +65,7 @@ public class FlowerController {
 
 		
 	}
+	
 	@DeleteMapping("/{flowerId}")
 	public ResponseEntity<Void> deleteFlower(@PathVariable Long flowerId){
 		flowerRepo.deleteById(flowerId);

@@ -1,1 +1,6 @@
-<p>welcome works!</p>
+<div class="card" *ngFor="let flower of flowers" >
+    <img src={{flower.imageURL}}  width="200" height="200">
+    <h1>{{flower.name}}</h1>
+    <p class="price">{{flower.price | currency:'USD'}}</p>
+    <p><button>Add to Cart</button></p>
+  </div>
