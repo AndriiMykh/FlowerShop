@@ -44,7 +44,14 @@ public class FlowerController {
 			throw new NotFoundException("Flower category id not found - " + categoryId);
 		return theFlower;
 	}
-	
+	@GetMapping("/findByName/{flowerName}")
+	public List<Flower> getFlowersByName(@PathVariable String flowerName) {
+		List<Flower> theFlower = flowerRepo.findByName(flowerName);
+		System.out.println(flowerName);
+//		if(theFlower.isEmpty())
+//			throw new NotFoundException("Flower not found - " + flowerName);
+		return theFlower;
+	}
 	@PostMapping("/")
 	public ResponseEntity<Flower> addFlower(@RequestBody Flower flower) {
 		System.out.println(flower);

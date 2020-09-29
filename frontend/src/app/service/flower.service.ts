@@ -13,4 +13,7 @@ export class FlowerService {
   getProductList():Observable<Flower[]>{
     return this.http.get<Flower[]>(this.baseURL);
   }
+  getFlowerByName(  name: string):Observable<Flower[]>{
+    return this.http.get<Flower[]>(`${this.baseURL}/findByName/${name}`);
+  }
 }

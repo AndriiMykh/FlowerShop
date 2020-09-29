@@ -13,4 +13,6 @@ import com.example.demo.entity.Flower;
 public interface FlowerRepository extends CrudRepository<Flower, Long> {
 	@Query("Select a from Flower a where category.category_id=:categoryid")
 	List<Flower> findByCategory(@Param("categoryid")Long categoryId);
+	@Query("SELECT u FROM Flower u WHERE u.name LIKE CONCAT('%',:name,'%')")
+	List<Flower> findByName(@Param("name")String name);
 }

@@ -8,8 +8,10 @@ import {Routes,RouterModule} from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FlowerService } from './service/flower.service';
+import { FormsModule } from '@angular/forms';
 
 const routes:Routes=[
+  {path: 'flowers/:name', component:WelcomeComponent},
   {path: 'flowers', component:WelcomeComponent},
   {path: '', redirectTo:'/flowers',pathMatch:'full'},
   {path: '**', redirectTo:'/flowers',pathMatch:'full'}
@@ -19,13 +21,14 @@ const routes:Routes=[
     AppComponent,
     WelcomeComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [FlowerService],
   bootstrap: [AppComponent]
