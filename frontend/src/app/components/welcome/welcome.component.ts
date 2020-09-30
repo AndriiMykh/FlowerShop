@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FlowerService} from 'src/app/service/flower.service'
+import {FlowerService} from 'src/app/service/flower.service';
+import {FlowerCategoryService} from 'src/app/service/flower-category.service';
 import { Flower } from 'src/app/common/flower';
 import { ActivatedRoute } from '@angular/router';
+import { FlowerCategory } from 'src/app/common/flower-category';
+
 
 
 @Component({
@@ -13,12 +16,15 @@ export class WelcomeComponent implements OnInit {
 
   flowers:Flower[];
   searchMode: boolean = false;
-  constructor(private flowerService:FlowerService,private route: ActivatedRoute) { }
+  constructor(private flowerService:FlowerService,
+    private route: ActivatedRoute,
+    ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
       this.getFlowers();
     });
+
   }
   private getFlowers() {
     this.searchMode = this.route.snapshot.paramMap.has('name');

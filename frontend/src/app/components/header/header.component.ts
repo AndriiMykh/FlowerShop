@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Flower } from 'src/app/common/flower';
-import { FlowerService } from 'src/app/service/flower.service';
+import { FlowerCategoryService } from 'src/app/service/flower-category.service';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
+import { FlowerCategory } from 'src/app/common/flower-category';
+
 
 @Component({
   selector: 'app-header',
@@ -13,12 +15,22 @@ import { Observable, Subject } from 'rxjs';
 export class HeaderComponent implements OnInit {
 
   keyword:string;
-  constructor(private router:Router) { }
+  flowersCategory:FlowerCategory[];
+  constructor(private router:Router,
+    private flowerCategoryService:FlowerCategoryService) { }
 
   ngOnInit(): void {
-    
+    this.getCategories();
   }
   searchByName(){
     this.router.navigateByUrl(`/flowers/${this.keyword}`)
+  }
+  getCategories(){
+    this.flowerCategoryService.getProductList().subscribe(
+      data=>{
+        console.log("Flower categories:"+data);
+        this.flowersCategory=data
+      }
+    )
   }
 }

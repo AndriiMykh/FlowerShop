@@ -22,13 +22,14 @@ const routes:Routes=[
     WelcomeComponent,
     HeaderComponent,
     FooterComponent,
+
   ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [FlowerService],
   bootstrap: [AppComponent]
