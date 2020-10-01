@@ -2,5 +2,5 @@
     <img src={{flower.imageURL}}  width="200" height="200">
     <h1>{{flower.name}}</h1>
     <p class="price">{{flower.price | currency:'USD'}}</p>
-    <p><button>Add to Cart</button></p>
+    <p><button (click)="addToCart(flower)">Add to Cart</button></p>
   </div>

@@ -9,10 +9,12 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FlowerService } from './service/flower.service';
 import { FormsModule } from '@angular/forms';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 const routes:Routes=[
   {path: 'flowers/:name', component:WelcomeComponent},
   {path: 'flowers', component:WelcomeComponent},
+  {path: 'shoppingCart', component:ShoppingCartComponent},
   {path: '', redirectTo:'/flowers',pathMatch:'full'},
   {path: '**', redirectTo:'/flowers',pathMatch:'full'}
 ];
@@ -22,6 +24,7 @@ const routes:Routes=[
     WelcomeComponent,
     HeaderComponent,
     FooterComponent,
+    ShoppingCartComponent,
 
   ],
   imports: [

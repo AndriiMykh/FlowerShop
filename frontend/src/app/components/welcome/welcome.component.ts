@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {FlowerService} from 'src/app/service/flower.service';
 import {FlowerCategoryService} from 'src/app/service/flower-category.service';
 import { Flower } from 'src/app/common/flower';
 import { ActivatedRoute } from '@angular/router';
 import { FlowerCategory } from 'src/app/common/flower-category';
-
+import {ShoppingCartService} from 'src/app/service/shopping-cart.service';
+import { CartItem } from 'src/app/common/cart-item';
 
 
 @Component({
@@ -13,11 +14,11 @@ import { FlowerCategory } from 'src/app/common/flower-category';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
-
   flowers:Flower[];
   searchMode: boolean = false;
   constructor(private flowerService:FlowerService,
     private route: ActivatedRoute,
+    private cartService:ShoppingCartService
     ) { }
 
   ngOnInit(): void {
@@ -50,5 +51,12 @@ export class WelcomeComponent implements OnInit {
         console.log(this.flowers);
       }
     );
+  }
+  addToCart(theFlower:Flower){
+    console.log(`Adding to cart ${theFlower.name},${theFlower.price}`);
+
+    const theCartItem=new CartItem(theFlower);
+
+    this.cartService.addToCart(theCartItem);
   }
 }
