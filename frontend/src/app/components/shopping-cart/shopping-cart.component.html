@@ -18,8 +18,16 @@
                         <p>{{ tempCartItem.price | currency: 'USD' }}</p>
                     </td>
                     <td>
+            
                         <div class="items">
-                            <label>Quantity:</label> {{ tempCartItem.quantity }}
+                            <div class="col col-qty layout-inline">
+                                <button  class="qty qty-plus" (click)="incrementQuantity(tempCartItem)">+</button>
+                                    <label>Quantity:</label> {{ tempCartItem.quantity }}
+                                <button class="qty qty-minus" (click)="decrementQuantity(tempCartItem)">-</button>
+                                
+                            </div>
+                            <button (click)="remove(tempCartItem)">Remove</button>  
+                              
                         </div>
 
                         <p class="mt-2">Subtotal: {{ tempCartItem.quantity * tempCartItem.price | currency: 'USD' }}</p>
@@ -33,9 +41,10 @@
                         <p>Total Price: {{ totalPrice | currency: 'USD' }}</p>
                     </td>
                 </tr>
-
             </table>
-
+            <div class="d-flex justify-content-center">
+                 <button type="button" class="btn btn-primary" *ngIf="totalQuantity>0" routerLink="/checkOutForm">Summarize</button>
+            </div>
         </div>
     </div>
 </div>

@@ -1,0 +1,150 @@
+<form [formGroup]="checkoutFormGroup" (ngSubmit)="onSubmit()">
+    <!-- customer form group -->
+    <div formGroupName="customer" class="form-area">
+        <h3>Customer</h3>
+
+        <div class="row">
+            <div class="col-md-2"> <label>First Name</label></div>
+            <div class="col-md-9">
+                <div class="input-space">
+                    <input formControlName="firstName" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"> <label>Last Name</label></div>
+            <div class="col-md-9">
+                <div class="input-space">
+                    <input formControlName="lastName" type="text">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2"> <label>Email</label></div>
+            <div class="col-md-9">
+                <div class="input-space">
+                    <input formControlName="email" type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div formGroupName="deliveryAddress" class="form-area">
+        <h3>Delivery Adress</h3>
+        <div class="row">
+            <div class="col-md-2"> <label>City</label></div>
+            <div class="col-md-9">
+                <div class="input-space">
+                    <input formControlName="city" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"> <label>street</label></div>
+            <div class="col-md-9">
+                <div class="input-space">
+                    <input formControlName="street" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"> <label>houseNumber</label></div>
+            <div class="col-md-9">
+                <div class="input-space">
+                    <input formControlName="houseNumber" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"> <label>flatNumber</label></div>
+            <div class="col-md-9">
+                <div class="input-space">
+                    <input formControlName="flatNumber" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"> <label>zipCode</label></div>
+            <div class="col-md-9">
+                <div class="input-space">
+                    <input formControlName="zipCode" type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div formGroupName="creditCard" class="form-area">
+        <div class="row">
+            <div class="col-md-2"> <label>Name on card</label></div>
+            <div class="col-md-9">
+                <div class="input-space">
+                    <input formControlName="nameOnCard" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"> <label>Card number</label></div>
+            <div class="col-md-9">
+                <div class="input-space">
+                    <input formControlName="cardNumber" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"> <label>CVV</label></div>
+            <div class="col-md-9">
+                <div class="input-space">
+                    <input formControlName="securityCode" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"> <label>Expiration month</label></div>
+            <div class="col-md-9">
+                <div class="input-space">
+                    <select formControlName="expirationMonth">
+                        <option *ngFor="let month of expirationMonth()">
+                            {{ month }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"> <label>Expiration Year</label></div>
+            <div class="col-md-9">
+                <div class="input-space">
+                    <select formControlName="expirationYear" (change)="expirationMonth()">
+                        <option *ngFor="let year of expirationYear()" >
+                            {{ year }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <button (click)="onSubmit()">Send</button>
+
+</form>
+<h1>Your order</h1>
+<table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">SubTotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let items of cartItems"> 
+        <td>{{items.name}}</td>
+        <td>{{items.quantity}}</td>
+        <td>{{items.price*items.quantity| number:'.2'}} </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>Total:{{total}} </td>
+      </tr>
+    </tbody>
+  </table>

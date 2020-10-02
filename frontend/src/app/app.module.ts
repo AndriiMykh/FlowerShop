@@ -8,13 +8,15 @@ import {Routes,RouterModule} from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FlowerService } from './service/flower.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { CheckOutFormComponent } from './components/check-out-form/check-out-form.component';
 
 const routes:Routes=[
   {path: 'flowers/:name', component:WelcomeComponent},
   {path: 'flowers', component:WelcomeComponent},
   {path: 'shoppingCart', component:ShoppingCartComponent},
+  {path:'checkOutForm', component:CheckOutFormComponent},
   {path: '', redirectTo:'/flowers',pathMatch:'full'},
   {path: '**', redirectTo:'/flowers',pathMatch:'full'}
 ];
@@ -25,6 +27,7 @@ const routes:Routes=[
     HeaderComponent,
     FooterComponent,
     ShoppingCartComponent,
+    CheckOutFormComponent,
 
   ],
   imports: [
@@ -33,6 +36,7 @@ const routes:Routes=[
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule
   ],
   providers: [FlowerService],
   bootstrap: [AppComponent]
