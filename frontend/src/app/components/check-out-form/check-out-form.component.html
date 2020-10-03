@@ -8,6 +8,14 @@
             <div class="col-md-9">
                 <div class="input-space">
                     <input formControlName="firstName" type="text">
+                    <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+                        <div *ngIf="firstName.errors.required || firstName.errors.notWhitespaces">
+                            First name is required.
+                        </div>
+                        <div *ngIf="firstName.errors.minlength">
+                            First name must be at least 4 characters long.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -16,6 +24,14 @@
             <div class="col-md-9">
                 <div class="input-space">
                     <input formControlName="lastName" type="text">
+                    <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
+                        <div *ngIf="lastName.errors.required || lastName.errors.notWhitespaces">
+                            Last name is required.
+                        </div>
+                        <div *ngIf="lastName.errors.minlength">
+                            Last name must be at least 4 characters long.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -25,10 +41,19 @@
             <div class="col-md-9">
                 <div class="input-space">
                     <input formControlName="email" type="text">
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                        <div *ngIf="email.errors.pattern">
+                            Please proveide correct format of email
+                        </div>
+                        <div *ngIf="email.errors.required">
+                            Email is required.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
     <div formGroupName="deliveryAddress" class="form-area">
         <h3>Delivery Adress</h3>
         <div class="row">
@@ -36,6 +61,14 @@
             <div class="col-md-9">
                 <div class="input-space">
                     <input formControlName="city" type="text">
+                    <div *ngIf="city.invalid && (city.dirty || city.touched)" class="alert alert-danger">
+                        <div *ngIf="city.errors.required || city.errors.notWhitespaces">
+                            City is required.
+                        </div>
+                        <div *ngIf="city.errors.minlength">
+                            City must be at least 3 characters long.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -44,6 +77,14 @@
             <div class="col-md-9">
                 <div class="input-space">
                     <input formControlName="street" type="text">
+                    <div *ngIf="street.invalid && (street.dirty || street.touched)" class="alert alert-danger">
+                        <div *ngIf="street.errors.required || street.errors.notWhitespaces">
+                            Street is required.
+                        </div>
+                        <div *ngIf="street.errors.minlength">
+                            Sity must be at least 3 characters long.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -52,6 +93,14 @@
             <div class="col-md-9">
                 <div class="input-space">
                     <input formControlName="houseNumber" type="text">
+                    <div *ngIf="houseNumber.invalid && (houseNumber.dirty || houseNumber.touched)" class="alert alert-danger">
+                        <div *ngIf="houseNumber.errors.pattern">
+                            Please provide correct format
+                        </div>
+                        <div *ngIf="houseNumber.errors.required">
+                            House number is required.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,6 +109,14 @@
             <div class="col-md-9">
                 <div class="input-space">
                     <input formControlName="flatNumber" type="text">
+                    <div *ngIf="flatNumber.invalid && (flatNumber.dirty || flatNumber.touched)" class="alert alert-danger">
+                        <div *ngIf="flatNumber.errors.pattern">
+                            Please provide correct format
+                        </div>
+                        <div *ngIf="flatNumber.errors.required">
+                            flatNumber is required.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -68,16 +125,35 @@
             <div class="col-md-9">
                 <div class="input-space">
                     <input formControlName="zipCode" type="text">
+                    <div *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched)" class="alert alert-danger">
+                        <div *ngIf="zipCode.errors.pattern">
+                            Please provide correct format
+                        </div>
+                        <div *ngIf="zipCode.errors.required">
+                            ZipCode is required.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
     <div formGroupName="creditCard" class="form-area">
+        <h3>Credit card</h3>
         <div class="row">
             <div class="col-md-2"> <label>Name on card</label></div>
             <div class="col-md-9">
                 <div class="input-space">
                     <input formControlName="nameOnCard" type="text">
+                    <div *ngIf="nameOnCard.invalid && (nameOnCard.dirty || nameOnCard.touched)" class="alert alert-danger">
+                        <div *ngIf="nameOnCard.errors.required || nameOnCard.errors.notWhitespaces">
+                            Name is required.
+                        </div>
+                        <div *ngIf="nameOnCard.errors.minlength">
+                            Name must be at least 4 characters long.
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -86,6 +162,14 @@
             <div class="col-md-9">
                 <div class="input-space">
                     <input formControlName="cardNumber" type="text">
+                    <div *ngIf="cardNumber.invalid && (cardNumber.dirty || cardNumber.touched)" class="alert alert-danger">
+                        <div *ngIf="cardNumber.errors.pattern">
+                            16 digits are required
+                        </div>
+                        <div *ngIf="cardNumber.errors.required">
+                            Card number is required.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -94,6 +178,14 @@
             <div class="col-md-9">
                 <div class="input-space">
                     <input formControlName="securityCode" type="text">
+                    <div *ngIf="securityCode.invalid && (securityCode.dirty || securityCode.touched)" class="alert alert-danger">
+                        <div *ngIf="securityCode.errors.pattern">
+                            3 digits are required
+                        </div>
+                        <div *ngIf="securityCode.errors.required">
+                            CVC is required.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -102,10 +194,15 @@
             <div class="col-md-9">
                 <div class="input-space">
                     <select formControlName="expirationMonth">
-                        <option *ngFor="let month of expirationMonth()">
+                        <option *ngFor="let month of pushExpirationMonth()">
                             {{ month }}
                         </option>
                     </select>
+                    <div *ngIf="expirationMonth.invalid && (expirationMonth.dirty || expirationMonth.touched)" class="alert alert-danger">
+                        <div *ngIf="expirationMonth.errors.required">
+                            Expiration month is required.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -113,11 +210,16 @@
             <div class="col-md-2"> <label>Expiration Year</label></div>
             <div class="col-md-9">
                 <div class="input-space">
-                    <select formControlName="expirationYear" (change)="expirationMonth()">
-                        <option *ngFor="let year of expirationYear()" >
+                    <select formControlName="expirationYear" (change)="pushExpirationMonth()">
+                        <option *ngFor="let year of pushExpirationYear()">
                             {{ year }}
                         </option>
                     </select>
+                    <div *ngIf="expirationYear.invalid && (expirationYear.dirty || expirationYear.touched)" class="alert alert-danger">
+                        <div *ngIf="expirationYear.errors.required">
+                            Expiration year is required.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -129,22 +231,22 @@
 <h1>Your order</h1>
 <table class="table table-dark">
     <thead>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">SubTotal</th>
-      </tr>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">SubTotal</th>
+        </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let items of cartItems"> 
-        <td>{{items.name}}</td>
-        <td>{{items.quantity}}</td>
-        <td>{{items.price*items.quantity| number:'.2'}} </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td>Total:{{total}} </td>
-      </tr>
+        <tr *ngFor="let items of cartItems">
+            <td>{{items.name}}</td>
+            <td>{{items.quantity}}</td>
+            <td>{{items.price*items.quantity| number:'.2'}} </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Total:{{total}} </td>
+        </tr>
     </tbody>
-  </table>
+</table>

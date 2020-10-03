@@ -1,0 +1,14 @@
+{
+    "telemetry.machineId": "d4ac3553695dc3e78ca8f63a34a96cdad6c39258e5ee5a3617d89ac935efd0b2",
+    "openedPathsList": {
+        "workspaces3": [
+            {
+                "id": "ca23edf876078bf64265643ca6257fed",
+                "configURIPath": "file:///c%3A/project/test/Backend/.metadata/codemix.code-workspace"
+            }
+        ],
+        "files2": []
+    },
+    "theme": "vs-dark",
+    "themeBackground": "#221a0f"
+}
