@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { CartItem } from 'src/app/common/cart-item';
 import { ShoppingCartService } from 'src/app/service/shopping-cart.service';
 import{CustomValidator} from 'src/app/common/custom-validator';
 import{Customer} from 'src/app/common/customer';
 import{FormServiceService} from 'src/app/service/form-service.service'
+import { Flower } from 'src/app/common/flower';
 @Component({
   selector: 'app-check-out-form',
   templateUrl: './check-out-form.component.html',
@@ -14,7 +14,7 @@ export class CheckOutFormComponent implements OnInit {
   checkoutFormGroup: FormGroup;
   constructor(private formBuilder: FormBuilder,private cartService:ShoppingCartService,
     private formService:FormServiceService) { }
-  cartItems:CartItem[]=[];
+  flowers:Flower[]=[];
   total:number=0;
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   NumberPattern='^\\d+$';
@@ -46,8 +46,8 @@ export class CheckOutFormComponent implements OnInit {
       })
     })
     this.getCartItems();
-    for (const items of this.cartItems) {
-      this.total+=(items.price*items.quantity)
+    for (const flowers of this.flowers) {
+      this.total+=(flowers.price*flowers.quantity)
     }
   }
   onSubmit() {
@@ -60,7 +60,7 @@ export class CheckOutFormComponent implements OnInit {
    this.theCustomer=this.checkoutFormGroup.get('customer').value
    this.theCustomer.adress=this.checkoutFormGroup.get('deliveryAddress').value
    this.theCustomer.card=this.checkoutFormGroup.get('creditCard').value
-   this.theCustomer.items=this.cartItems
+   this.theCustomer.flowers=this.flowers
    console.log(this.theCustomer)
   this.formService.postCustomer(this.theCustomer).subscribe(
     data=>{
@@ -69,7 +69,7 @@ export class CheckOutFormComponent implements OnInit {
   )
   }
   getCartItems(){
-    this.cartItems=this.cartService.cartItems;
+    this.flowers=this.cartService.cartItems;
   }
   pushExpirationYear():number[]{
     let years:number[]=[];

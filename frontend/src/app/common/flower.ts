@@ -5,5 +5,6 @@ export class Flower {
 	name: string ;
 	price: number ;
     imageURL: String ;
+    quantity:number;
     category: FlowerCategory;
 }

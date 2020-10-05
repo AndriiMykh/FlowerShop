@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { CartItem } from '../common/cart-item';
 import { Flower } from '../common/flower';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingCartService {
-  cartItems: CartItem[] = [];
+  cartItems: Flower[] = [];
   totalPrice: Subject<number> = new Subject<number>();
   totalQuantity: Subject<number> = new Subject<number>();
   constructor() { }
-  addToCart(theCartItem: CartItem) {
+  addToCart(theCartItem: Flower) {
     console.log("cartService:"+theCartItem)
 
     let alreadyExistsInCart: boolean = false;
-    let existingCartItem: CartItem = undefined;
+    let existingCartItem: Flower = undefined;
 
     if (this.cartItems.length > 0) {
 
@@ -45,7 +44,7 @@ export class ShoppingCartService {
     this.totalPrice.next(totalPriceValue);
     this.totalQuantity.next(totalQuantityValue);
   }
-  decrementQuantity(theCartItem: CartItem) {
+  decrementQuantity(theCartItem: Flower) {
 
     theCartItem.quantity--;
 
@@ -57,7 +56,7 @@ export class ShoppingCartService {
     }
   }
 
-  remove(theCartItem: CartItem) {
+  remove(theCartItem: Flower) {
 
     const itemIndex = this.cartItems.findIndex( tempCartItem => tempCartItem.id === theCartItem.id );
 

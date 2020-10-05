@@ -33,8 +33,10 @@ public class Flower {
 	
 	@Column
 	private String imageURL;
-	
+	@Column
+	private int quantity;
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private FlowerCategory category;
+
 }
