@@ -5,6 +5,7 @@ import{CustomValidator} from 'src/app/common/custom-validator';
 import{Customer} from 'src/app/common/customer';
 import{FormServiceService} from 'src/app/service/form-service.service'
 import { Flower } from 'src/app/common/flower';
+
 @Component({
   selector: 'app-check-out-form',
   templateUrl: './check-out-form.component.html',
@@ -23,11 +24,12 @@ export class CheckOutFormComponent implements OnInit {
   CVCPattern='[0-9]{3}';
   theCustomer:Customer;
   date: Date = new Date;
+  items:Item[]=[];
   ngOnInit(): void {
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
         firstName : new FormControl ('',[Validators.required, Validators.minLength(4),CustomValidator.notWhitespaces],),
-       lastName: new FormControl ('',[Validators.required, Validators.minLength(4),CustomValidator.notWhitespaces]),
+        lastName: new FormControl ('',[Validators.required, Validators.minLength(4),CustomValidator.notWhitespaces]),
         email: new FormControl ('',[Validators.required,Validators.pattern(this.emailPattern)]),
       }),
       deliveryAddress: this.formBuilder.group({
@@ -48,7 +50,16 @@ export class CheckOutFormComponent implements OnInit {
     this.getCartItems();
     for (const flowers of this.flowers) {
       this.total+=(flowers.price*flowers.quantity)
+      let item = new Item();
+      item.name= flowers.name
+      item.quantity= flowers.quantity
+      this.items.push(item)
     }
+    for(const item of this.items){
+      console.log("Item name:"+item.name)
+      console.log("Item quantity:"+item.quantity)
+    }
+    
   }
   onSubmit() {
     //console.log(this.checkoutFormGroup.get('customer').value)
@@ -60,7 +71,7 @@ export class CheckOutFormComponent implements OnInit {
    this.theCustomer=this.checkoutFormGroup.get('customer').value
    this.theCustomer.adress=this.checkoutFormGroup.get('deliveryAddress').value
    this.theCustomer.card=this.checkoutFormGroup.get('creditCard').value
-   this.theCustomer.flowers=this.flowers
+   this.theCustomer.items=this.items
    console.log(this.theCustomer)
   this.formService.postCustomer(this.theCustomer).subscribe(
     data=>{
@@ -114,6 +125,20 @@ export class CheckOutFormComponent implements OnInit {
   get securityCode(){return this.checkoutFormGroup.get('creditCard.securityCode');}
   get expirationMonth(){return this.checkoutFormGroup.get('creditCard.expirationMonth');}
   get expirationYear(){return this.checkoutFormGroup.get('creditCard.expirationYear');}
-
-
+}
+export class Item{
+  private _quantity: number;
+  public get quantity(): number {
+    return this._quantity;
+  }
+  public set quantity(value: number) {
+    this._quantity = value;
+  }
+  private _name: string;
+  public get name(): string {
+    return this._name;
+  }
+  public set name(value: string) {
+    this._name = value;
+  }
 }

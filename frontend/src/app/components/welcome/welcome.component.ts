@@ -5,7 +5,7 @@ import { Flower } from 'src/app/common/flower';
 import { ActivatedRoute } from '@angular/router';
 import { FlowerCategory } from 'src/app/common/flower-category';
 import {ShoppingCartService} from 'src/app/service/shopping-cart.service';
-import { CartItem } from 'src/app/common/cart-item';
+
 
 
 @Component({
@@ -55,7 +55,7 @@ export class WelcomeComponent implements OnInit {
   addToCart(theFlower:Flower){
     console.log(`Adding to cart ${theFlower.name},${theFlower.price}`);
 
-    const theCartItem=new CartItem(theFlower);
+    const theCartItem=new Flower(theFlower);
 
     this.cartService.addToCart(theCartItem);
   }

@@ -7,4 +7,14 @@ export class Flower {
     imageURL: String ;
     quantity:number;
     category: FlowerCategory;
+
+    constructor(flower:Flower){
+        this.id=flower.id;
+        this.name=flower.name;
+        this.imageURL=flower.imageURL;
+        this.price=flower.price;
+
+        this.quantity=1;
+    }
+
 }
