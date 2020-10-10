@@ -10,4 +10,4 @@ Step 1. Download  the files and open it in corresponding IDE.<br/>
 Step 2. Configure your application.properties for your database.(In my case it's Postgres)<br/>
 Step 3. Run your IDE with Java code.<br/>
 Step 4. Run your IDE with angular.<br/>
-Step 5. Open your favorite browser and test my application.<br/>
+Step 5. Open your favorite browser, paste "http://localhost:4200/flowers" and test my application.<br/>
